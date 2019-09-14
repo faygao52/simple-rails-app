@@ -1,0 +1,26 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+.table {
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  
+  .header, .row {
+    display: flex;
+    
+    div {
+      flex: 1;
+      padding: 0.2rem 0.4em;
+      border: 1px solid rgb(238, 238, 238);
+    }
+  }
+  
+  .header {
+    background-color: rgb(238, 238, 238);
+    div { 
+      cursor: pointer;
+    }
+  }
+}
