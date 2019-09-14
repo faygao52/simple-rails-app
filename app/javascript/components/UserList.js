@@ -31,7 +31,7 @@ class UserList extends React.Component {
    */
   showIcon(key) {
     let arrow = this.state.order === 1 ? 'arrow_upward' : 'arrow_downward'
-    return  (key===this.state.sortBy) ? <i class="material-icons left">{arrow}</i> : '';
+    return  (key===this.state.sortBy) ? <i className="material-icons left">{arrow}</i> : '';
   }
 
   /**
@@ -85,9 +85,28 @@ class UserList extends React.Component {
   }
 
   render () {
+    /**
+     * Reload user after filter and order changed
+     */
     const reloadUsers = () => {
       let users = this.filterByName(this.state.filter);
       return this.sort(users);
+    }
+
+    /**
+     * Helper to generate table head
+     * @param {Array<String>} headers array of fields 
+     */
+    const tableHeader = headers => {
+      return (
+        <tr>
+          { headers.map(key => 
+            <th className={this.isActive(key)} key={key}
+                onClick={() => this.sortBy(key)} > {key} {this.showIcon(key)}
+            </th>)
+          }
+        </tr>
+      );
     }
 
     const users = reloadUsers().map( user => (
@@ -99,23 +118,13 @@ class UserList extends React.Component {
       </tr>
     ));
 
-    const header = (key) => {
-      let title = key.charAt(0).toUpperCase()  + key.slice(1);
-      return <th className={this.isActive(key)} onClick={() => this.sortBy(key)} >{title}{this.showIcon(key)}</th>
-    }
-
     return (
       <div className="container">
         <h1>Data Table</h1>
         <input type="text" className="form-control form-control-lg" placeholder="Search by name" onChange={this.onFilter}/>
-        <table class="striped">
+        <table className="striped">
           <thead>
-            <tr>
-              { header('name') }
-              { header('date') }
-              { header('number') }
-              { header('description') }
-            </tr>
+            {tableHeader(['name', 'date', 'nunber', 'description'])}
           </thead>
           <tbody>
             {users}
