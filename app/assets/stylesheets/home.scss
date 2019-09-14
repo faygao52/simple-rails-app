@@ -3,24 +3,17 @@
   They will automatically be included in application.css.
 */
 
-.main {
-  max-width: 960px;
-  text-align: center;
-  margin-top: 5rem;
+.flash-error {
+  color: red;
+}
 
-  .flash-error {
-    color: red;
-  }
-  
-  .upload-section {
-    margin:auto;
-    width: 30rem;
-  }
-  .file-label {
-    color: white;
-  }
+.upload-section {
+  width: 30rem;
+}
+.file-label {
+  color: white;
+}
 
-  .file-input {
-    display: none;
-  }
+.file-input {
+  display: none;
 }

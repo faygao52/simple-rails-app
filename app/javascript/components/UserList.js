@@ -79,7 +79,6 @@ class UserList extends React.Component {
    * @param {String} key the field used for comparison
    */
   sortBy(key) {
-    debugger;
     let order = this.state.sortBy == key ? - this.state.order : 1;
     this.setState({ sortBy: key, order: order });
   }
