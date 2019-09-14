@@ -1,0 +1,26 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.main {
+  max-width: 960px;
+  text-align: center;
+  margin-top: 5rem;
+
+  .flash-error {
+    color: red;
+  }
+  
+  .upload-section {
+    margin:auto;
+    width: 30rem;
+  }
+  .file-label {
+    color: white;
+  }
+
+  .file-input {
+    display: none;
+  }
+}

@@ -1,9 +1,18 @@
-<h1>Welcome!</h1>
-<% flash.each do |key, value| %>
-    <%= content_tag :div, value, class: "flash #{key}" %>
+<div class="main">
+  <h1>Welcome!</h1>
+  <% flash.each do |key, value| %>
+    <%= content_tag :div, value, class: "flash-#{key}" %>
   <% end %>
-<%= form_with(url: { :controller => "users", :action => 'import' }, multipart: true) do |f| %>
-    <%= f.label :file, "Please select a CSV file" %>
-    <%= f.file_field :file, required: true %>
-    <%= submit_tag( "Import" ) %>
-<% end %>
+  <%= form_with(url: { :controller => "users", :action => 'import' }, multipart: true) do |f| %>
+    <div class="file-field upload-section">
+      <div class="btn">
+        <%= f.label :file, "Upload File", class: 'file-label' %>
+        <%= f.file_field :file, required: true, class: 'file-input' %>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Select a csv file">
+      </div>
+    </div>
+    <%= submit_tag( "Import", :class=> 'btn' ) %>
+  <% end %>
+</div>

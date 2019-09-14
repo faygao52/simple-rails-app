@@ -8,10 +8,30 @@ class UserList extends React.Component {
       filter: '',
       sortBy: 'id'
     }
+    this.isActive = this.isActive.bind(this);
+    this.showIcon = this.showIcon.bind(this);
     this.onFilter = this.onFilter.bind(this);
     this.filterByName = this.filterByName.bind(this);
     this.sort = this.sort.bind(this);
     this.sortBy = this.sortBy.bind(this);
+  }
+
+  /**
+   * Change table head style, highlight the field which we used
+   * for sorting
+   * @param {String} key the field
+   */
+  isActive(key) {
+    return (key===this.state.sortBy) ? 'teal-text text-lighten-2' : '';
+  }
+
+  /**
+   * Show sort icon if current field is used for sorting
+   * @param {String} key 
+   */
+  showIcon(key) {
+    let arrow = this.state.order === 1 ? 'arrow_upward' : 'arrow_downward'
+    return  (key===this.state.sortBy) ? <i class="material-icons left">{arrow}</i> : '';
   }
 
   /**
@@ -71,29 +91,31 @@ class UserList extends React.Component {
     }
 
     const users = reloadUsers().map( user => (
-      <div className="row" key={user.id}>
-        <div>{user.name}</div>
-        <div>{user.date}</div>
-        <div>{user.number}</div>
-        <div>{user.description}</div>
-      </div>
+      <tr key={user.id}>
+        <td>{user.name}</td>
+        <td>{user.date}</td>
+        <td>{user.number}</td>
+        <td>{user.description}</td>
+      </tr>
     ));
 
     return (
-      <div>
+      <div className="container">
         <h1>Data Table</h1>
         <input type="text" className="form-control form-control-lg" placeholder="Search by name" onChange={this.onFilter}/>
-        <div className="table">
-          <div className="header">
-            <div onClick={() => this.sortBy('name')} >Name</div>
-            <div onClick={() => this.sortBy('date')}>Date</div>
-            <div onClick={() => this.sortBy('number')}>Number</div>
-            <div onClick={() => this.sortBy('description')}>Description</div>
-          </div>
-          <div className="body">
+        <table class="striped">
+          <thead>
+            <tr>
+              <th className={this.isActive('name')} onClick={() => this.sortBy('name')} >Name{this.showIcon('name')}</th>
+              <th className={this.isActive('date')} onClick={() => this.sortBy('date')}>Date{this.showIcon('date')}</th>
+              <th className={this.isActive('number')} onClick={() => this.sortBy('number')}>Number{this.showIcon('number')}</th>
+              <th className={this.isActive('description')} onClick={() => this.sortBy('description')}>Description{this.showIcon('description')}</th>
+            </tr>
+          </thead>
+          <tbody>
             {users}
-          </div>
-        </div>
+          </tbody>
+        </table>
       </div>
     );
   }
