@@ -99,6 +99,11 @@ class UserList extends React.Component {
       </tr>
     ));
 
+    const header = (key) => {
+      let title = key.charAt(0).toUpperCase()  + key.slice(1);
+      return <th className={this.isActive(key)} onClick={() => this.sortBy(key)} >{title}{this.showIcon(key)}</th>
+    }
+
     return (
       <div className="container">
         <h1>Data Table</h1>
@@ -106,10 +111,10 @@ class UserList extends React.Component {
         <table class="striped">
           <thead>
             <tr>
-              <th className={this.isActive('name')} onClick={() => this.sortBy('name')} >Name{this.showIcon('name')}</th>
-              <th className={this.isActive('date')} onClick={() => this.sortBy('date')}>Date{this.showIcon('date')}</th>
-              <th className={this.isActive('number')} onClick={() => this.sortBy('number')}>Number{this.showIcon('number')}</th>
-              <th className={this.isActive('description')} onClick={() => this.sortBy('description')}>Description{this.showIcon('description')}</th>
+              { header('name') }
+              { header('date') }
+              { header('number') }
+              { header('description') }
             </tr>
           </thead>
           <tbody>
