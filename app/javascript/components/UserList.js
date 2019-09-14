@@ -124,7 +124,7 @@ class UserList extends React.Component {
         <input type="text" className="form-control form-control-lg" placeholder="Search by name" onChange={this.onFilter}/>
         <table className="striped">
           <thead>
-            {tableHeader(['name', 'date', 'nunber', 'description'])}
+            {tableHeader(['name', 'date', 'number', 'description'])}
           </thead>
           <tbody>
             {users}
