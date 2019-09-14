@@ -1,0 +1,7 @@
+<h1>Welcome! Please import CSV file here</h1>
+
+<%= form_with(url: { :controller => "users", :action => 'import' }, multipart: true) do |f| %>
+    <%= f.label :file, "select a CSV file" %>
+    <%= f.file_field :file, required: true %>
+    <%= submit_tag( "Import" ) %>
+<% end %>
