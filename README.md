@@ -1,24 +1,9 @@
-# README
+# Simple rails app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple Rails app that uses react-rails gem, which render React components server die.
 
-Things you may want to cover:
+To get this app running:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- `bundle install`
+- `rake db:migrate`
+- `rails s`
