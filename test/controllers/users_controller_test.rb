@@ -1,11 +1,31 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  test 'should get index' do
+  test 'should render search bar' do
     get users_url
+
     assert_response :success
+    assert_select 'h1', 'Data Table'
+    assert_select 'input' do 
+      assert_select '[placeholder=?]', 'Search by name'
+    end
   end
 
+  test 'should render UserList component' do
+    get users_url
+
+    assert_response :success
+
+    users = User.all    
+    assert_select "span[data-react-class=?]", 'UserList' do |dom|
+      if block_given?
+        props = JSON.parse(dom.attr("data-react-props"))
+        props.deep_symbolize_keys!
+        assert_equal users, props[:users]
+      end
+    end
+  end
+  
   test 'should fallback to home page if file is not csv' do
     fixture_file = fixture_file_upload('files/test.jpeg')
     post import_users_url, params: { file:  fixture_file }

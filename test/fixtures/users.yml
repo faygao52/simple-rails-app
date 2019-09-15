@@ -4,8 +4,13 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one: 
+  name: Paul
+  date: 1981-08-28
+  number: 33
+  description: Vivamus id ligula rutrum, this man is the greatest there ever was.
+two: 
+  name: Troy
+  date: 1982-02-28
+  number: 85
+  description: Maecenas vitae ultricies purus, id posuere sem. Mauris.

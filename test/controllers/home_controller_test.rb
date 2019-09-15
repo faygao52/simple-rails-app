@@ -4,7 +4,7 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
   test 'should get index' do
     get root_url
     assert_select 'h1', 'Welcome!'
-    assert_select 'label', 'Please select a CSV file'
+    assert_select 'label', 'Upload File'
     assert_response :success
   end
 
